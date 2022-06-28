@@ -6,7 +6,7 @@ import NumberOfTask from "./NumberOfTask";
 const Home = () => {
 	
 	const [task, setTask] = useState([]);
-	const [isShown, setIsShown] = useState(false);
+	const [isShown, setIsShown] = useState(-1);
 	const [taskCount, setTaskCount] = useState(0);
 
 	return (
@@ -17,12 +17,11 @@ const Home = () => {
 				onKeyDown={e => e.key === "Enter" ? (setTask([...task, e.target.value]), setTaskCount(taskCount + 1), (e.target.value = "")) : ""}/> 
 				{task.map((elem, index) => {
 					return (
-						<div className="row"  onMouseEnter={() => setIsShown(true)}  onMouseLeave={() => setIsShown(false)}>
-							<div className="col">
+						<div className="row" onMouseEnter={() => setIsShown(index)}  onMouseLeave={() => setIsShown(-1)}>
+							<div  className='col'>
 								<Task todoTask={elem} key={index}/>
-								
 							</div>
-							<div className={isShown ? "col-6 d-block" : "d-none"}>
+							<div className={isShown == index ? "col-6 d-block" : "d-none"}>
 								<button type="button" onClick={() => (task.splice(index, 1), setTaskCount(taskCount - 1))}>X</button>
 							</div>
 						</div>

@@ -3,9 +3,9 @@ import React from 'react'
 
 const Task = ({todoTask}) => {
     return (
-        <div>
+            <div>
 			{todoTask}
-        </div>
+            </div>
     )
 }
 
